@@ -23,7 +23,12 @@ public class Main {
 
         System.out.println(Arrays.toString(randomNumbersArray));
         System.out.println("Max number in array: " + maximalNumberInArray);
-        
+        System.out.println("Max number in array found by sort-method: " + findingMaxNumberInArrayBySort(randomNumbersArray));
     }
 
+    public static int findingMaxNumberInArrayBySort(int[] numbersArray) {
+        int[] safeCopyOfArray = Arrays.copyOf(numbersArray, numbersArray.length); // Arrays.sort is mutate array, that's why create a copy
+        Arrays.sort(safeCopyOfArray);  // Sort the array
+        return safeCopyOfArray[safeCopyOfArray.length - 1]; // Return last number in array
+    }
 }
