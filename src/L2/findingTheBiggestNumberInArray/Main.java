@@ -15,7 +15,7 @@ public class Main {
             randomNumbersArray[i] = randomNumberGenerator.nextInt(10_000);
         }
 
-        int maximalNumberInArray = 0;
+        int maximalNumberInArray = randomNumbersArray[0];
         for (int i : randomNumbersArray) {                              // Traversing the array and finding max number
             if (i > maximalNumberInArray)
                 maximalNumberInArray = i;
