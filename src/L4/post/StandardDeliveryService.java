@@ -11,11 +11,6 @@ public class StandardDeliveryService extends DeliveryService {
   }
 
   @Override
-  void transferTo(Message message) throws InterruptedException {
-    this.deliver(message);
-  }
-
-  @Override
   public String toString() {
     return "Standard Delivery Service";
   }

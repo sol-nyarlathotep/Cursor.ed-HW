@@ -1,7 +1,5 @@
 package L4.post;
 
-import java.util.Date;
-
 public class Sender extends Client {
   public Sender(String firstName, String secondName, String lastName) {
     this.firstName = firstName;
@@ -11,8 +9,9 @@ public class Sender extends Client {
 
   @Override
   void getDeliveryNotification(Message message) {
+    System.out.println("\n[Notification for Sender]");
     Recipient recipient = message.getRecipient();
-    System.out.printf("Dear %s,\nRecipient %s received your message\n", this, recipient);
+    System.out.printf("Dear %s,\nRecipient %s received your message\n\n", this, recipient);
   }
 
   @Override

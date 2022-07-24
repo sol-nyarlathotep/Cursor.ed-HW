@@ -10,9 +10,10 @@ public class Recipient extends Client {
 
   @Override
   void getDeliveryNotification(Message message) {
+    System.out.println("\n[Notification for Recipient]");
     Sender sender = message.getSender();
     System.out.printf(
-        "Dear %s,\nIncome message from %s delivered to your Post Department\n", this, sender);
+        "Dear %s,\nIncome message from %s delivered to your Post Department\n\n", this, sender);
   }
 
   @Override

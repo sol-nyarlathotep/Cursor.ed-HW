@@ -6,9 +6,7 @@ public abstract class DeliveryService {
 
   protected int maxDeliveryDays;
 
-  abstract void transferTo(Message message) throws InterruptedException;
-
-  protected void deliver(Message message) throws InterruptedException {
+  public void deliver(Message message) throws InterruptedException {
     Random randomNumberGenerator = new Random();
     int deliveryTime = randomNumberGenerator.nextInt(this.maxDeliveryDays);
     System.out.printf("Estimated delivery time: %d days\n", deliveryTime);

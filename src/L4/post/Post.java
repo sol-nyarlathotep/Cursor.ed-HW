@@ -49,7 +49,7 @@ public class Post {
         .getSender()
         .sendCustomNotification(
             "We accepted your message and transfer to Delivery Service. Wait for delivered notification.");
-    message.getDeliveryService().transferTo(message);
+    message.getDeliveryService().deliver(message);
   }
 
   protected void weighMessage(Message message) {

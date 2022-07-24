@@ -10,11 +10,6 @@ public class PlatinumDeliveryService extends DeliveryService {
   }
 
   @Override
-  void transferTo(Message message) throws InterruptedException {
-    this.deliver(message);
-  }
-
-  @Override
   public String toString() {
     return "Platinum Delivery Service";
   }
