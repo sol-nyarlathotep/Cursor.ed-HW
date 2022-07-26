@@ -2,9 +2,7 @@ package L4.post;
 
 public class Sender extends Client {
   public Sender(String firstName, String secondName, String lastName) {
-    this.firstName = firstName;
-    this.secondName = secondName;
-    this.lastName = lastName;
+    super(firstName, secondName, lastName);
   }
 
   @Override

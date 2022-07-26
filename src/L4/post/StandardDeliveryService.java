@@ -1,13 +1,20 @@
 package L4.post;
 
-public class StandardDeliveryService extends DeliveryService {
+public class StandardDeliveryService implements DeliveryService {
+  private double deliveryPriceMultiplier = 1.0;
+  private double maxMessageWeight = 35.0;
+  private int maxDeliveryDays = 35;
 
-  static double deliveryPriceMultiplier = 1.0;
-  static double maxMessageWeight = 35.0;
-  int maxDeliveryDays = 35;
+  public double getDeliveryPriceMultiplier() {
+    return deliveryPriceMultiplier;
+  }
 
-  public StandardDeliveryService(){
-    super.maxDeliveryDays = this.maxDeliveryDays;
+  public double getMaxMessageWeight() {
+    return maxMessageWeight;
+  }
+
+  public int getMaxDeliveryDays() {
+    return maxDeliveryDays;
   }
 
   @Override

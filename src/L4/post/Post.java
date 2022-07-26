@@ -5,7 +5,10 @@ import L4.post.utils.Utils;
 
 public class Post {
 
-  double basePrice = 75.0;
+  private double basePrice = 75.0;
+  DeliveryService standardDeliveryService = new StandardDeliveryService();
+  DeliveryService premiumDeliveryService = new PremiumDeliveryService();
+  DeliveryService platinumDeliveryService = new PlatinumDeliveryService();
 
   public void acceptMessage(Recipient recipient, Message message) throws InterruptedException {
     message.setRecipient(recipient);
@@ -15,26 +18,26 @@ public class Post {
     this.sendTo(message);
   }
 
-  protected void chooseDeliveryService(Message message) {
+  private void chooseDeliveryService(Message message) {
     System.out.println("You need to choose which delivery service you want to use");
     System.out.printf(
         "Prices: Standard - %.2f, Premium - %.2f, Platinum - %.2f\n",
-        basePrice * StandardDeliveryService.deliveryPriceMultiplier,
-        basePrice * PremiumDeliveryService.deliveryPriceMultiplier,
-        basePrice * PlatinumDeliveryService.deliveryPriceMultiplier);
+        basePrice * standardDeliveryService.getDeliveryPriceMultiplier(),
+        basePrice * premiumDeliveryService.getDeliveryPriceMultiplier(),
+        basePrice * platinumDeliveryService.getDeliveryPriceMultiplier());
     String baseNotice = "The following services are available to you: ";
     double messageWeight = message.getMessageWeight();
-    if (messageWeight <= StandardDeliveryService.maxMessageWeight) {
+    if (messageWeight <= standardDeliveryService.getMaxMessageWeight()) {
       System.out.println(baseNotice + "Standard, Premium, Platinum");
       DeliveryService deliveryService =
           Utils.getDeliveryServiceFromUserInput(new String[] {"Standard", "Premium", "Platinum"});
       message.setDeliveryService(deliveryService);
-    } else if (messageWeight <= PremiumDeliveryService.maxMessageWeight) {
+    } else if (messageWeight <= premiumDeliveryService.getMaxMessageWeight()) {
       System.out.println(baseNotice + "Premium, Platinum");
       DeliveryService deliveryService =
           Utils.getDeliveryServiceFromUserInput(new String[] {"Premium", "Platinum"});
       message.setDeliveryService(deliveryService);
-    } else if (messageWeight <= PlatinumDeliveryService.maxMessageWeight) {
+    } else if (messageWeight <= platinumDeliveryService.getMaxMessageWeight()) {
       System.out.println(baseNotice + "Platinum");
       DeliveryService deliveryService =
           Utils.getDeliveryServiceFromUserInput(new String[] {"Platinum"});
@@ -44,16 +47,17 @@ public class Post {
     }
   }
 
-  protected void sendTo(Message message) throws InterruptedException {
+  private void sendTo(Message message) throws InterruptedException {
     message
         .getSender()
         .sendCustomNotification(
             "We accepted your message and transfer to Delivery Service. Wait for delivered notification.");
-    message.getDeliveryService().deliver(message);
+    DeliveryService deliveryService = message.getDeliveryService();
+    int maxDeliveryDays = deliveryService.getMaxDeliveryDays();
+    deliveryService.deliver(message, maxDeliveryDays);
   }
 
-  protected void weighMessage(Message message) {
-    // TODO: Define weight, based on message type
+  private void weighMessage(Message message) {
     Random randomNumberGenerator = new Random();
     double lowBound = 0.1;
     double highBound = 1000.0;
@@ -73,7 +77,7 @@ public class Post {
     System.out.printf("Weight of your message: %.2f kg\n", messageWeight);
   }
 
-  protected void onReceive(Message message) {
+  public void onReceive(Message message) {
     message.getSender().getDeliveryNotification(message);
     message.getRecipient().getDeliveryNotification(message);
   }

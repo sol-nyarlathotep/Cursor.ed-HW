@@ -6,7 +6,6 @@ public class Message implements Sendable {
   private Double messageWeight;
   private Post postService;
   private Recipient recipient;
-
   private DeliveryService deliveryService;
 
   Message(TypeOfMessage typeOfMessage, Sender sender) {
