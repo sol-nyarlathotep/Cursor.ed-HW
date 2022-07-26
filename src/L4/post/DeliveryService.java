@@ -3,8 +3,6 @@ package L4.post;
 import java.util.Random;
 
 public interface DeliveryService {
-
-
   int getMaxDeliveryDays();
   double getMaxMessageWeight();
   double getDeliveryPriceMultiplier();
