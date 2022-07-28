@@ -5,7 +5,6 @@ import java.util.Optional;
 
 public class MyList<T extends Comparable> {
   private Comparable[] array = new Comparable[0];
-
   public MyList<T> add(T param) {
     array = Arrays.copyOf(array, array.length + 1);
     array[array.length - 1] = param;

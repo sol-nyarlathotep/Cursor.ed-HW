@@ -11,7 +11,9 @@ public class Main {
     printListInfo(doubleMyList, "Double");
     printListInfo(stringMyList, "String");
     printListInfo(integerMyList, "Integer");
-
+    System.out.println("Problem 3.\n------------------------");
+    var stringExtremumFinder = new ExtremumFinder<String>(new String[]{"A", "B", "C"});
+    System.out.println(stringExtremumFinder);
   }
 
   public static void printListInfo(MyList myList, String listType){
