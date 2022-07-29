@@ -1,12 +1,10 @@
 package L5;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 public class MyList<T extends Comparable> {
-//  private Comparable[] list = new Comparable[0];
     private List<Comparable> list = new ArrayList<>();
   public MyList<T> add(T param) {
     list.add(param);
@@ -45,10 +43,6 @@ public class MyList<T extends Comparable> {
       smallestElement = (T) minAsOptional.get();
     }
     return smallestElement;
-  }
-
-  public void printList() {
-    System.out.println(this);
   }
 
   @Override
