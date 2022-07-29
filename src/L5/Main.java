@@ -2,8 +2,11 @@ package L5;
 
 public class Main {
   public static void main(String[] args) {
+
     var doubleMyList = new MyList<Double>();
-    doubleMyList.add(-99.0).add(-95.0).add(-97.0).add(31.0).add(0.0).add(-99.0);
+//    doubleMyList.add(-99.0).add(-95.0).add(-97.0).add(31.0).add(0.0).add(-99.0);
+    doubleMyList.add(99.0).add(33.0).add(331.0);
+    doubleMyList.add(96.0);
     var stringMyList = new MyList<String>();
     stringMyList.add("A").add("B").add("C");
     var integerMyList = new MyList<Integer>();

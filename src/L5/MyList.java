@@ -1,20 +1,22 @@
 package L5;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 public class MyList<T extends Comparable> {
-  private Comparable[] array = new Comparable[0];
+//  private Comparable[] list = new Comparable[0];
+    private List<Comparable> list = new ArrayList<>();
   public MyList<T> add(T param) {
-    array = Arrays.copyOf(array, array.length + 1);
-    array[array.length - 1] = param;
+    list.add(param);
     return this;
   }
 
   public T largest() {
     T largestElement = null;
     Optional<Comparable> maxAsOptional =
-        Arrays.stream(array)
+        list.stream()
             .reduce(
                 (acc, com) -> {
                   if (com.compareTo(acc) > 0) {
@@ -31,7 +33,7 @@ public class MyList<T extends Comparable> {
   public T smallest() {
     T smallestElement = null;
     Optional<Comparable> minAsOptional =
-        Arrays.stream(array)
+        list.stream()
             .reduce(
                 (acc, com) -> {
                   if (com.compareTo(acc) < 0) {
@@ -46,11 +48,11 @@ public class MyList<T extends Comparable> {
   }
 
   public void printList() {
-    System.out.println(Arrays.toString(this.array));
+    System.out.println(this);
   }
 
   @Override
   public String toString() {
-    return Arrays.toString(array);
+    return list.toString();
   }
 }
